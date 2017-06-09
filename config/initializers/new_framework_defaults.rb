@@ -24,3 +24,9 @@ ActiveSupport.halt_callback_chains_on_return_false = false
 
 # Configure SSL options to enable HSTS with subdomains. Previous versions had false.
 Rails.application.config.ssl_options = { hsts: { subdomains: true } }
+
+# Configure adapter to active_job queue
+Rails.application.config.active_job.queue_adapter = :sidekiq
+
+# rspec as default test_framework
+Rails.application.config.generators {|g| g.test_framework :rspec }
