@@ -1,0 +1,14 @@
+class CreatePosts < ActiveRecord::Migration[5.0]
+  def change
+    create_table :posts do |t|
+      t.string :title
+      t.string :slug
+      t.string :url
+      t.text :text_md
+      t.text :text_html
+      t.references :user, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end
