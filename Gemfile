@@ -21,6 +21,9 @@ gem 'rack-cors'
 gem 'redis', '~> 3.0'
 gem 'sidekiq'
 gem 'devise'
+gem 'bootstrap3-rails'
+gem 'font-awesome-rails'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platform: :mri
