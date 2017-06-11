@@ -9,8 +9,23 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+
+    <div id="wrapper">
+      <%= render "layouts/bars/top" %>
+
+      <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+          <div class="container" style="margin-botton: 0px;">
+            <div style="margin-top: 40px">
+              <%= render "layouts/flash" %>
+            </div>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
   </body>
 </html>
