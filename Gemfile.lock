@@ -43,6 +43,7 @@ GEM
     bindex (0.5.0)
     bootstrap3-rails (3.2.0)
       rails (>= 4.0.0)
+    bower-rails (0.11.0)
     builder (3.2.3)
     byebug (9.0.6)
     concurrent-ruby (1.0.5)
@@ -193,6 +194,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap3-rails
+  bower-rails (~> 0.11.0)
   byebug
   devise
   font-awesome-rails
@@ -203,6 +205,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 5.0.3)
   redis (~> 3.0)
+  responders
   rspec-expectations
   rspec-rails
   sass-rails (~> 5.0)

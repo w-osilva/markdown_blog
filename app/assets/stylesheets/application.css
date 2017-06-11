@@ -12,6 +12,8 @@
  *
  *= require bootstrap
  *= require font-awesome
+ *= require simplemde/dist/simplemde.min
+
  *= require_tree .
  *= require_self
  */
