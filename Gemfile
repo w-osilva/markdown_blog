@@ -14,20 +14,26 @@ gem 'sass-rails', '~> 5.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
+# gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
-gem 'rack-cors'
+# gem 'rack-cors'
 gem 'redis', '~> 3.0'
 gem 'sidekiq'
-gem 'bower-rails', '~> 0.11.0'
+
+# theme
 gem 'bootstrap3-rails'
 gem 'font-awesome-rails'
+gem 'bower-rails', '~> 0.11.0'
 
 # plataformatec
 gem 'devise'
 gem 'simple_form'
 gem 'responders'
+
+# pagination
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 
 group :development, :test do

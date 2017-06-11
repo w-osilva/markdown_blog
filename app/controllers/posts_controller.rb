@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :load_user
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page])
     respond_with @posts
   end
 
