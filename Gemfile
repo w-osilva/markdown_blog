@@ -20,10 +20,15 @@ gem 'jbuilder', '~> 2.5'
 gem 'rack-cors'
 gem 'redis', '~> 3.0'
 gem 'sidekiq'
-gem 'devise'
+gem 'bower-rails', '~> 0.11.0'
 gem 'bootstrap3-rails'
 gem 'font-awesome-rails'
+
+# plataformatec
+gem 'devise'
 gem 'simple_form'
+gem 'responders'
+
 
 group :development, :test do
   gem 'byebug', platform: :mri
