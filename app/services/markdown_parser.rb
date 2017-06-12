@@ -1,6 +1,6 @@
 class MarkdownParser
 
-  def self.convert_to_html(text_md)
+  def self.to_html(text_md)
     render = Redcarpet::Render::HTML.new({
       filter_html:     true,
       hard_wrap:       true,
