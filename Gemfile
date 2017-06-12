@@ -9,32 +9,32 @@ gem 'rails', '~> 5.0.3'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
-# gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 1.3.0'
 # gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
+# gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
-# gem 'jbuilder', '~> 2.5'
-# gem 'bcrypt', '~> 3.1.7'
-# gem 'capistrano-rails', group: :development
-# gem 'rack-cors'
+gem 'enumerize'
+
+# Jobs
 gem 'redis', '~> 3.0'
 gem 'sidekiq'
+gem 'redcarpet', '~> 3.4.0'
 
-# theme
+# Theme
 gem 'bootstrap3-rails'
 gem 'font-awesome-rails'
 gem 'bower-rails', '~> 0.11.0'
 
-# plataformatec
+# Plataformatec
 gem 'devise'
 gem 'simple_form'
 gem 'responders'
 
-# pagination
+# Pagination
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
-
 
 group :development, :test do
   gem 'byebug', platform: :mri

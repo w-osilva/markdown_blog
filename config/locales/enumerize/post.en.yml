@@ -1,0 +1,7 @@
+en:
+  enumerize:
+    post:
+      status:
+        new: "New"
+        published: "Published"
+        disabled: "Disabled"

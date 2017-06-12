@@ -1,6 +1,11 @@
 <%= simple_form_for(post) do |f| %>
   <fieldset>
     <%= f.error_notification %>
+    <% if @post.errors.full_messages.any? %>
+        <% @post.errors.full_messages.each do |error_message| %>
+            <%= error_message if @post.errors.full_messages.first == error_message %> <br />
+        <% end %>
+    <% end %>
 
     <div class="form-group">
       <%= f.input :title, class: "form-control",  aria: { required: true } %>
