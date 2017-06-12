@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
   def post_params
     post_params = params[:post]
-    post_params ? post_params.permit(:title, :slug, :url, :text_md, :text_html, :user_id) : {}
+    post_params ? post_params.permit(:title, :slug, :file, :status, :text_md, :text_html, :user_id) : {}
   end
 
   def build_post
