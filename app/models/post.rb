@@ -1,39 +1,32 @@
 class Post < ApplicationRecord
+  extend Enumerize
+
   belongs_to :user
 
   validates :title, presence: true
   validates :text_md, presence: true
   validates :user, presence: true
 
-  after_create :parse_markdown_to_html
+  before_create :default_attributes
+  after_save :process_markdown
 
-  extend Enumerize
-  enumerize :status, in: [
-      :new, :published, :disabled
-  ], predicates: true, scope: true, default: :new
+  enumerize :status, in: [:new, :published, :disabled], default: :new, predicates: true, scope: true
 
   default_scope {where(status: [:new, :published]).order(created_at: :desc)}
 
-  def parse_markdown_to_html
-    self[:text_html] = MarkdownParser::convert_to_html text_md
-    self[:slug] = make_slug
-    self[:file] = make_file
-    self[:status] = :published
-    save
+  def process_markdown
+    PostJob.perform_later(post_id: id)
   end
 
   private
-  def make_slug
+  def default_attributes
     slug = title.strip.parameterize.underscore
     registered = Post.where("slug LIKE ?", slug)
-    if registered.present?
-      slug = "#{slug}_#{registered.size}"
-    end
-    slug
-  end
+    slug = "#{slug}_#{registered.size}" if registered.present?
 
-  def make_file
-    "#{slug}.html"
+    self[:slug] = slug
+    self[:status] = :new
+    self[:file] = "#{slug}.html"
   end
 
 end

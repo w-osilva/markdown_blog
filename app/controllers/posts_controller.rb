@@ -43,8 +43,7 @@ class PostsController < ApplicationController
   end
 
   def build_post
-    @post ||= Post.new
-    @post.user = @user
+    @post ||= Post.new(status: :new, user: @user)
     @post.attributes = post_params
   end
 
