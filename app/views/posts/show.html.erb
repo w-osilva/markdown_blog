@@ -6,29 +6,19 @@
 </p>
 
 <p>
-  <strong>Slug:</strong>
-  <%= @post.slug %>
+  <strong>Created:</strong>
+  <%= @post.created_at %>
 </p>
 
 <p>
-  <strong>File:</strong>
-  <%= @post.file %>
-</p>
-
-<p>
-  <strong>Text md:</strong>
-  <%= @post.text_md %>
-</p>
-
-<p>
-  <strong>Text html:</strong>
-  <%= @post.text_html %>
-</p>
-
-<p>
-  <strong>User:</strong>
+  <strong>Author:</strong>
   <%= @post.user %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<p>
+  <strong>links:</strong>
+  <ul class="">
+    <li><strong>Original:</strong> <%= link_to(post_url_html(@post.file)) do %>  <%= post_url_html @post.file %> <% end %></li>
+    <li><strong>Blog:</strong> <%= link_to(post_url(@post.file)) do %>  <%= post_url @post.file %> <% end %></li>
+  </ul>
+</p>
