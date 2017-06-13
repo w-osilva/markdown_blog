@@ -5,4 +5,5 @@
 production:
   :concurrency: 20
 :queues:
-  - convert_markdown
+  - post_markdown
+  - post_publish

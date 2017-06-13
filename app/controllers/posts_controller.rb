@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :republish]
   before_action :load_user
 
   def index
-    @posts = Post.page(params[:page])
+    @posts = Post.page(params[:page]).per(5)
     respond_with @posts
   end
 
@@ -32,6 +32,16 @@ class PostsController < ApplicationController
     destroy_post or render :index
   end
 
+  def render_html
+    render file: Post.post_path.join(params[:user], params[:file]), layout: true
+  end
+
+  def republish
+    PostPublishJob.perform_later(post_id: @post.id)
+    flash[:notice] = "The post will be published soon."
+    redirect_to posts_path
+  end
+
   private
   def set_post
     @post = Post.find(params[:id])
@@ -56,7 +66,7 @@ class PostsController < ApplicationController
   end
 
   def destroy_post
-    @post.destroy
+    @post.disable
     flash[:danger] = @post.errors.full_messages.to_sentence if @post.errors.any?
     respond_with @post, location: posts_path
   end
