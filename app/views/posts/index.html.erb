@@ -14,15 +14,18 @@
 
             <div class="row">
               <div class="col-md-6">
-                <i class="fa fa-calendar"></i>  <%= post.created_at %>
-                <br>
-                <i class="fa fa-at"></i> <%= post.user.nickname %>
+                <ul class="list-unstyled">
+                  <li><i class="fa fa-calendar"></i>  <%= post.created_at %></li>
+                  <li><i class="fa fa-at"></i> <%= post.user.nickname %></li>
+                  <li><span class="label label-<%= post_label(post.status) %>"><%= post.status %></span></li>
+                </ul>
               </div>
               <div class="col-md-6">
                 <div class="btn-toolbar pull-right">
                   <div class="btn-group">
-                    <%= link_to(edit_post_path(post), class: 'btn btn-info btn-sm') do %><i class="fa fa-pencil"></i><% end %>
-                    <%= link_to(post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm') do %><i class="fa fa-trash"></i><% end %>
+                    <%= link_to(post_republish_path(post), class: 'btn btn-success btn-sm', title: 'Republish') do %><i class="fa fa-repeat"></i><% end %>
+                    <%= link_to(edit_post_path(post), class: 'btn btn-info btn-sm', title: 'Edit') do %><i class="fa fa-pencil"></i><% end %>
+                    <%= link_to(post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', title: 'Disable') do %><i class="fa fa-ban"></i><% end %>
                   </div>
                 </div>
               </div>

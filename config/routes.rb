@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout'}, controllers: { sessions: 'users/sessions' }
 
   resources :posts
+  get 'posts/render/:user/:file', to: 'posts#render_html', as: 'post_render_html'
+  get 'posts/:id/republish', to: 'posts#republish', as: 'post_republish'
 
 end
