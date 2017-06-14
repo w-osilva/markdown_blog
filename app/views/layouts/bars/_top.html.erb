@@ -11,12 +11,22 @@
     <div class="navbar-collapse collapse" id="navbar-main">
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a style="font-size: 1em"><%= current_user.email %> </a></li>
-        <li>
-          <%= link_to(destroy_user_session_path, method: :delete, style:"font-size: 1.3em") do %>
-              <i class="fa fa-power-off"></i>
-          <% end %>
-        </li>
+        <% if user_signed_in? %>
+            <li><a style="font-size: 1em">
+              <%= current_user.email %> </a>
+            </li>
+            <li>
+              <%= link_to(destroy_user_session_path, method: :delete, style:"font-size: 1.3em", title: "Logout") do %>
+                  <i class="fa fa-power-off"></i>
+              <% end %>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to(new_user_session_path, style:"font-size: 1.3em", title: "Login") do %>
+                  <i class="fa fa-sign-in"></i>
+              <% end %>
+            </li>
+        <% end %>
       </ul>
 
     </div>

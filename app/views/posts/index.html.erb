@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts
-  <%= link_to t("buttons.new", model: Post.model_name.human), new_post_path, class: 'btn btn-primary btn-md pull-right' %>
+  <% if policy(:post).new? %>
+    <%= link_to t("buttons.new", model: Post.model_name.human), new_post_path, class: 'btn btn-primary btn-md pull-right' %>
+  <% end %>
 </h1>
 
 <table class="table">
@@ -22,11 +24,17 @@
               </div>
               <div class="col-md-6">
                 <div class="btn-toolbar pull-right">
-                  <div class="btn-group">
-                    <%= link_to(post_republish_path(post), class: 'btn btn-success btn-sm', title: 'Republish') do %><i class="fa fa-repeat"></i><% end %>
-                    <%= link_to(edit_post_path(post), class: 'btn btn-info btn-sm', title: 'Edit') do %><i class="fa fa-pencil"></i><% end %>
-                    <%= link_to(post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', title: 'Disable') do %><i class="fa fa-ban"></i><% end %>
-                  </div>
+
+                  <% if policy(:post).edit? %>
+                    <div class="btn-group">
+                      <% if post.new? %>
+                        <%= link_to(post_republish_path(post), class: 'btn btn-success btn-sm', title: 'Republish') do %><i class="fa fa-repeat"></i><% end %>
+                      <% end %>
+                      <%= link_to(edit_post_path(post), class: 'btn btn-info btn-sm', title: 'Edit') do %><i class="fa fa-pencil"></i><% end %>
+                      <%= link_to(post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', title: 'Disable') do %><i class="fa fa-ban"></i><% end %>
+                    </div>
+                  <% end %>
+
                 </div>
               </div>
             </div>
