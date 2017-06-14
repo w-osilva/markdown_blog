@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
+  before_action :authorize_request
   before_action :set_post, only: [:show, :edit, :update, :destroy, :republish]
   before_action :load_user
 
   def index
-    @posts = Post.page(params[:page]).per(5)
+    @posts = policy_scope(Post).page(params[:page]).per(5)
     respond_with @posts
   end
 
@@ -69,6 +70,10 @@ class PostsController < ApplicationController
     @post.disable
     flash[:danger] = @post.errors.full_messages.to_sentence if @post.errors.any?
     respond_with @post, location: posts_path
+  end
+
+  def authorize_request
+    authorize Post
   end
 
 end
