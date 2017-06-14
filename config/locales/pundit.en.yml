@@ -1,0 +1,7 @@
+en:
+  pundit:
+    default: 'Unauthorized access'
+    post_policy:
+      index?: 'You cannot access this resource'
+      update?: 'You cannot edit this resource'
+      create?: 'You cannot create resource'
