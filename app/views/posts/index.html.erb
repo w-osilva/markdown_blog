@@ -25,7 +25,7 @@
               <div class="col-md-6">
                 <div class="btn-toolbar pull-right">
 
-                  <% if policy(:post).edit? %>
+                  <% if policy(post).edit? %>
                     <div class="btn-group">
                       <% if post.new? %>
                         <%= link_to(post_republish_path(post), class: 'btn btn-success btn-sm', title: 'Republish') do %><i class="fa fa-repeat"></i><% end %>

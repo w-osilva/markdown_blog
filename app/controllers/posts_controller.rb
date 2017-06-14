@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authorize_request
   before_action :set_post, only: [:show, :edit, :update, :destroy, :republish]
-  before_action :load_user
+  before_action :set_user
+  before_action :authorize_request
 
   def index
     @posts = policy_scope(Post).page(params[:page]).per(5)
@@ -44,6 +44,10 @@ class PostsController < ApplicationController
   end
 
   private
+  def set_user
+    @user = current_user
+  end
+
   def set_post
     @post = Post.find(params[:id])
   end
@@ -58,10 +62,6 @@ class PostsController < ApplicationController
     @post.attributes = post_params
   end
 
-  def load_user
-    @user = current_user
-  end
-
   def save_post
     respond_with(@post, :location => post_path(@post)) if @post.save
   end
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
   end
 
   def authorize_request
-    authorize Post
+    authorize (@post) ? @post : Post
   end
 
 end

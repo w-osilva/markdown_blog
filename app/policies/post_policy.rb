@@ -45,18 +45,16 @@ class PostPolicy < ApplicationPolicy
     can_edit?
   end
 
-  #---------------------------------------------------
-
   def can_see?
     true
   end
 
   def can_create?
-    user.present?
+    not guest?
   end
 
   def can_edit?
-    can_create? and (record.user.id == user.id)
+     can_create? and (record.user.id == user.id)
   end
 
 end
