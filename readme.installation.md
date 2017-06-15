@@ -58,6 +58,11 @@ $ cd markdown_blog
 $ git checkout master
 ```
 
+Download das dependências do projeto
+```
+$ bundle install
+```
+
 ### Database (Migrations e Seeds)
 ###### config/database.yml
 Precisamos criar o banco de dados e semear algumas tabelas com dados para a aplicação funcionar.
@@ -97,3 +102,20 @@ $ rails s puma -b 0.0.0.0 -p 3000
 ```
 Se preferir que rode em backgroung adicione no comando o parametro: ```-d```
 
+
+### Login na aplicação
+Acessando o link [http://localhost:3000](http://localhost:3000)
+
+Inicialmente temos 2 usuários cadastrados:
+```
+-------Admin------------
+email: admin@blog.com
+senha: admin1234  
+   
+-------User-------------
+email: user@blog.com
+senha: user1234
+```
+
+
+###### [Voltar para Readme](README.md)

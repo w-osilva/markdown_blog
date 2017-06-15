@@ -42,3 +42,6 @@ Utilize sua criatividade para mostrar que suas habilidades vão além do básico
 * Fazer testes de integração usando ferramentas especializadas
 * Caprichar na estilização da página 
 * Nos surpreender com alguma implementação que melhore o fluxo para o usuário
+
+
+###### [Voltar para Readme](README.md)
