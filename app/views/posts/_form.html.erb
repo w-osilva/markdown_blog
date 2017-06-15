@@ -1,0 +1,24 @@
+<%= simple_form_for(post) do |f| %>
+  <fieldset>
+    <%= f.error_notification %>
+    <% if @post.errors.full_messages.any? %>
+        <% @post.errors.full_messages.each do |error_message| %>
+            <%= error_message if @post.errors.full_messages.first == error_message %> <br />
+        <% end %>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.input :title, class: "form-control",  aria: { required: true } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.input :text_md, class: "form-control" %>
+    </div>
+
+    <div class="form-group pull-right">
+      <%= f.button :submit ,class: "btn-primary" %>
+      <%= link_to t("buttons.cancel"), :back, class: "btn btn-default" %>
+    </div>
+
+  </fieldset>
+<% end %>

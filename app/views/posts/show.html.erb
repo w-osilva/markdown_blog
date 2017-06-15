@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Created:</strong>
+  <%= @post.created_at %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @post.user %>
+</p>
+
+<p>
+  <strong>links:</strong>
+  <ul class="">
+    <li><strong>Original:</strong> <%= link_to(post_url_html(@post.file), id: 'original-link') do %>  <%= post_url_html @post.file %> <% end %></li>
+    <li><strong>Blog:</strong> <%= link_to(post_url(@post.file), id: 'blog-link') do %>  <%= post_url @post.file %> <% end %></li>
+  </ul>
+</p>

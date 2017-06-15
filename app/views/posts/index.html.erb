@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts
+  <% if policy(:post).new? %>
+    <%= link_to t("buttons.new", model: Post.model_name.human), new_post_path, class: 'btn btn-primary btn-md pull-right' %>
+  <% end %>
+</h1>
+
+<table class="table posts">
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <div class="row-fluid post-item">
+            <%= link_to post do %><h3><%= post.title %></h3><% end %>
+
+            <div class="row">
+              <div class="col-md-6">
+                <ul class="list-unstyled">
+                  <li><i class="fa fa-calendar"></i>  <%= post.created_at %></li>
+                  <li><i class="fa fa-at"></i> <%= post.user.nickname %></li>
+                  <li><span class="label label-<%= post_label(post.status) %>"><%= post.status %></span></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <div class="btn-toolbar pull-right">
+
+                  <% if policy(post).edit? %>
+                    <div class="btn-group">
+                      <% if post.new? %>
+                        <%= link_to(post_republish_path(post), class: 'btn btn-success btn-sm', title: 'Republish') do %><i class="fa fa-repeat"></i><% end %>
+                      <% end %>
+                      <%= link_to(edit_post_path(post), class: 'btn btn-info btn-sm', title: 'Edit') do %><i class="fa fa-pencil"></i><% end %>
+                      <%= link_to(post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', title: 'Disable') do %><i class="fa fa-ban"></i><% end %>
+                    </div>
+                  <% end %>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfooter>
+    <tr>
+      <td>
+        <%= paginate @posts, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination-sm pull-right" %>
+      </td>
+    </tr>
+  </tfooter>
+</table>

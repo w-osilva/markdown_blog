@@ -1,0 +1,10 @@
+en:
+  buttons:
+    delete: "Delete"
+    cancel: "Cancel"
+    add: "Add"
+    new: "New %{model}"
+    edit: "Edit"
+    import: "Import"
+    save: "Save %{model}"
+    download: "Download"
