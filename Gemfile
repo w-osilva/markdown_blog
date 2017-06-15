@@ -17,27 +17,30 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
-gem 'enumerize'
+# Authentication and authorization
+gem 'devise'
 gem 'pundit'
 
 # Jobs
 gem 'redis', '~> 3.0'
 gem 'sidekiq'
+
+# Markdown convert
 gem 'redcarpet', '~> 3.4.0'
 
 # Theme
+gem 'bower-rails', '~> 0.11.0'
 gem 'bootstrap3-rails'
 gem 'font-awesome-rails'
-gem 'bower-rails', '~> 0.11.0'
-
-# Plataformatec
-gem 'devise'
-gem 'simple_form'
-gem 'responders'
 
 # Pagination
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+
+# Others
+gem 'enumerize'
+gem 'simple_form'
+gem 'responders'
 
 group :development, :test do
   gem 'byebug', platform: :mri
