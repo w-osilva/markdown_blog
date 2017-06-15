@@ -16,13 +16,13 @@
               <%= current_user.email %> </a>
             </li>
             <li>
-              <%= link_to(destroy_user_session_path, method: :delete, style:"font-size: 1.3em", title: "Logout") do %>
+              <%= link_to(destroy_user_session_path, method: :delete, style:"font-size: 1.3em", title: "Logout", class: "logout") do %>
                   <i class="fa fa-power-off"></i>
               <% end %>
             </li>
         <% else %>
             <li>
-              <%= link_to(new_user_session_path, style:"font-size: 1.3em", title: "Login") do %>
+              <%= link_to(new_user_session_path, style:"font-size: 1.3em", title: "Login", class: "login") do %>
                   <i class="fa fa-sign-in"></i>
               <% end %>
             </li>

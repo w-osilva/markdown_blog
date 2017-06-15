@@ -2,12 +2,13 @@ require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
 
-  let(:invalid_attributes) { FactoryGirl.attributes_for(:post_invalid) }
-  let(:valid_attributes) { FactoryGirl.attributes_for(:post_published) }
+  let(:invalid_attributes) { {titulo: ''} }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:post) }
+
+  let!(:new_post){ FactoryGirl.create(:post) }
 
   describe "GET #index" do
     it "Expected all posts as @posts" do
-      new_post = FactoryGirl.create(:post_not_published)
       get :index, params: {}, session: valid_session
       expect(assigns(:posts)).to eq([new_post])
     end
@@ -15,7 +16,6 @@ RSpec.describe PostsController, type: :controller do
 
    describe "GET #show" do
     it "Expected can be listed a specific post" do
-      new_post = FactoryGirl.create(:post_not_published)
       get :show, params: {id: new_post.id}, session: valid_session
       expect(assigns(:post)).to eq(new_post)
     end
@@ -34,17 +34,16 @@ RSpec.describe PostsController, type: :controller do
         expect(assigns(:post)).to be_a(Post)
         expect(assigns(:post)).to be_persisted
       end
-
     end
 
     context "with invalid params" do
       it "Expected one attempt of create one post don't be save" do
-        post :create, params: {post: {titulo: ''}}, session: valid_session
+        post :create, params: {post: invalid_attributes}, session: valid_session
         expect(assigns(:post)).to be_a_new(Post)
       end
 
       it "Render template 'new' again" do
-        post :create, params: {post: {titulo: ''}}, session: valid_session
+        post :create, params: {post: invalid_attributes}, session: valid_session
         expect(response).to render_template("new")
       end
     end
@@ -53,19 +52,16 @@ RSpec.describe PostsController, type: :controller do
   describe "PUT #update" do
     context "with valid parameters" do
       it "request to update post" do
-        new_post = FactoryGirl.create(:post_not_published)
         put :update, params: {id: new_post.to_param, post: valid_attributes}, session: valid_session
         new_post.reload
       end
 
       it "Expected the requested post as @post" do
-        new_post = FactoryGirl.create(:post_not_published)
         put :update, params: {id: new_post.to_param, post: valid_attributes}, session: valid_session
         expect(assigns(:post)).to eq(new_post)
       end
 
       it "redirect to posts" do
-        new_post = FactoryGirl.create(:post_not_published)
         put :update, params: {id: new_post.to_param, post: valid_attributes}, session: valid_session
         expect(response).to redirect_to(root_path)
       end
@@ -73,13 +69,11 @@ RSpec.describe PostsController, type: :controller do
 
     context "with valid parameters" do
       it "Expected to be the @post was rendered" do
-        new_post = FactoryGirl.create(:post_not_published)
         put :update, params: {id: new_post.id, post: valid_attributes}, session: valid_session
         expect(assigns(:post)).to eq(new_post)
       end
 
       it "Render the template 'edit' again" do
-        new_post = FactoryGirl.create(:post_not_published)
         put :update, params: {id: new_post.id, post: invalid_attributes}, session: valid_session
         expect(response).to redirect_to(root_path)
       end
@@ -88,14 +82,12 @@ RSpec.describe PostsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "Expected to be excluded a selected post" do
-      new_post = FactoryGirl.create(:post_not_published)
       expect {
         delete :destroy, params: {id: new_post.id}, session: valid_session
       }.to change(Post, :count).by(0)
     end
 
     it "Expected to be redirected to list of posts" do
-      new_post = FactoryGirl.create(:post_not_published)
       delete :destroy, params: {id: new_post.id}, session: valid_session
       expect(response).to redirect_to(root_path)
     end

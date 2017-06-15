@@ -18,7 +18,7 @@
 <p>
   <strong>links:</strong>
   <ul class="">
-    <li><strong>Original:</strong> <%= link_to(post_url_html(@post.file)) do %>  <%= post_url_html @post.file %> <% end %></li>
-    <li><strong>Blog:</strong> <%= link_to(post_url(@post.file)) do %>  <%= post_url @post.file %> <% end %></li>
+    <li><strong>Original:</strong> <%= link_to(post_url_html(@post.file), id: 'original-link') do %>  <%= post_url_html @post.file %> <% end %></li>
+    <li><strong>Blog:</strong> <%= link_to(post_url(@post.file), id: 'blog-link') do %>  <%= post_url @post.file %> <% end %></li>
   </ul>
 </p>
