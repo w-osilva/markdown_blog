@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# ruby '2.3.3'
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -41,6 +43,14 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'rspec-expectations'
+  gem 'rspec-collection_matchers'
+  gem 'capybara', '~> 2.13.0'
+  gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
