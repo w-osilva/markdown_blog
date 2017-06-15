@@ -17,3 +17,5 @@ module MarkdownBlog
     config.time_zone = 'Brasilia'
   end
 end
+
+REDIS = YAML.load_file(Rails.root.join('config/redis.yml'))[Rails.env]
