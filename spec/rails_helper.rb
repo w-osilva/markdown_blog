@@ -40,11 +40,10 @@ RSpec.configure do |config|
 
   # Include modules
   config.include FactoryGirl::Syntax::Methods
+  config.include Warden::Test::Helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
-  # config.include RequestSpecHelper, type: :request
   config.include DeviseRequestSpecHelpers, type: :request
   config.include ControllerSpecHelpers
-  config.include Warden::Test::Helpers
 
   # Capybara
   config.include Capybara::DSL
