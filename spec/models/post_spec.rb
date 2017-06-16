@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
 
   let!(:users) {[
-      FactoryGirl.create(:user, {email: 'user@example.com', password: 'mysecretpassword', nickname: 'user', first_name: 'user'}),
-      FactoryGirl.create(:user, {email: 'admin@example.com', password: 'mysecretpassword', nickname: 'admin', first_name: 'admin'}),
+    FactoryGirl.create(:user, {email: 'user@example.com', password: 'mysecretpassword', nickname: 'user', first_name: 'user'}),
+    FactoryGirl.create(:user, {email: 'admin@example.com', password: 'mysecretpassword', nickname: 'admin', first_name: 'admin'}),
   ]}
   let!(:posts) do
     posts = []
