@@ -13,17 +13,32 @@ RSpec.describe Post, type: :model do
     posts
   end
 
-  describe "validate assossiations" do
+  describe "#assossiations" do
     it { should belong_to(:user) }
   end
 
-  describe "attributes" do
+  describe ".attributes" do
     subject(:post) { posts[0] }
     it {expect(post.attributes).to include("id", "user_id", "title", "text_md", "text_md", "text_html", "status", "created_at", "updated_at", "file", "slug")}
+
+    context "required" do
+      subject(:invalid_attributes) { FactoryGirl.attributes_for(:post, title: nil, text_md: nil, user: nil) }
+      let (:build_post) { FactoryGirl.build(:post, invalid_attributes) }
+
+      it ".title" do
+        expect(build_post.save).to be false
+      end
+      it ".text_md" do
+        expect(build_post.save).to be false
+      end
+      it ".user" do
+        expect(build_post.save).to be false
+      end
+    end
   end
 
-  describe "default_scope" do
-    it "posts should be in descending order by created_at attribute" do
+  describe "#default_scope" do
+    specify "posts should be in descending order by created_at attribute" do
       posts = Post.all
       posts.each_with_index do |post, key|
         next_post = posts[key + 1]
@@ -31,5 +46,17 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+
+  describe "#before_create" do
+    context ".set_default_attributes" do
+      subject(:post) { FactoryGirl.build(:post) }
+      specify do
+        expect(post).to receive(:set_default_attributes).once
+        post.save
+      end
+    end
+  end
+
+
 
 end
