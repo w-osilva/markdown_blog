@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get 'posts/render/:user/:file', to: 'posts#render_html', as: 'post_render_html'
   get 'posts/:id/republish', to: 'posts#republish', as: 'post_republish'
 
+  post 'markdown/to_html', to: 'markdown#to_html', as: 'markdown_to_html'
+
 end
