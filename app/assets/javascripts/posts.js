@@ -13,17 +13,37 @@ $(document).on('turbolinks:load', function(){
       initialValue: value,
       placeholder: "Type here the content...",
       spellChecker: false,
-      status: false
-      // previewRender: function(plainText, preview) {
-      //   // Async method
-      //   setTimeout(function(){
-      //     preview.innerHTML = "<h1>Testing assync parser</h1>";
-      //   }, 1000);
-      //   return "Loading...";
-      // }
+      status: false,
+      previewRender: function(plainText, preview) {
+          var converter = new MarkdownConverter();
+          converter.to_html(plainText).then(function(response){
+            preview.innerHTML = response;
+          });
+        return "Loading...";
+      }
     });
   }
 
 });
+
+class MarkdownConverter {
+  constructor() {
+    this.endpoint = "/markdown";
+  }
+
+  to_html(mdText) {
+    let endpoint = `${this.endpoint}/to_html`;
+    return this._request('POST', endpoint, {markdown: {text_md: mdText}});
+  }
+
+  _request(method, url, params){
+    return $.ajax({
+      method: method,
+      url: url,
+      data: params,
+      async: true
+    });
+  }
+}
 
 
