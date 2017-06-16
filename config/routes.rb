@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "posts#index"
 
-  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout'}, controllers: { sessions: 'users/sessions' }
+  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout'}
 
   resources :posts
   get 'posts/render/:user/:file', to: 'posts#render_html', as: 'post_render_html'
