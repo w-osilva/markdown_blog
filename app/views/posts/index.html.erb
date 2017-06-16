@@ -12,8 +12,7 @@
       <tr>
         <td>
           <div class="row-fluid post-item">
-            <%= link_to post do %><h3><%= post.title %></h3><% end %>
-
+            <h3><%= link_to(post_url_render(post.file), id: 'blog-link') do %>  <%= post.title %> <% end %></h3>
             <div class="row">
               <div class="col-md-6">
                 <ul class="list-unstyled">
@@ -30,6 +29,7 @@
                       <% if post.new? %>
                         <%= link_to(post_republish_path(post), class: 'btn btn-success btn-sm', title: 'Republish') do %><i class="fa fa-repeat"></i><% end %>
                       <% end %>
+                      <%= link_to(post, class: 'btn btn-success btn-sm', title: 'Info') do %>&nbsp<i class="fa fa-info"></i>&nbsp<% end %>
                       <%= link_to(edit_post_path(post), class: 'btn btn-info btn-sm', title: 'Edit') do %><i class="fa fa-pencil"></i><% end %>
                       <%= link_to(post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm', title: 'Disable') do %><i class="fa fa-ban"></i><% end %>
                     </div>

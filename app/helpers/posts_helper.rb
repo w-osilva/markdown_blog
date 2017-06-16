@@ -1,5 +1,5 @@
 module PostsHelper
-  def post_url(file)
+  def post_url_render(file)
     params = file.split("/")
     post_render_html_url(params[0], params[1])
   end
